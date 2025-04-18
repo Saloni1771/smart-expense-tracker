@@ -1,0 +1,19 @@
+import sqlite3
+
+conn=sqlite3.connect("database/tracker.db")
+cursor = conn.cursor()
+
+cursor.execute('''
+  CREATE TABLE IF NOT EXISTS expenses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    amount REAL NOT NULL,
+    category TEXT NOT NULL,
+    description TEXT,
+    data TEXT NOT NULL
+)
+''')
+
+conn.commit()
+conn.close()
+
+print("Database and table created successfully.")
