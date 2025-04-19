@@ -9,7 +9,7 @@ cursor.execute('''
     amount REAL NOT NULL,
     category TEXT NOT NULL,
     description TEXT,
-    data TEXT NOT NULL
+    date TEXT NOT NULL
 )
 ''')
 
