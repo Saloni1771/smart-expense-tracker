@@ -1,2 +1,9 @@
+sqlite3
+datetime
 pandas
 matplotlib
+streamlit 
+hashlib( for password encryption)
+(Add openpyxl if you're exporting to Excel using df.to_excel()):
+txt)
+openpyxl

@@ -9,24 +9,24 @@ def connect_db():
     # connect to the existing database
     return sqlite3.connect(DB_Path) 
 
-def add_expense(amount, category, description):
+def add_expense(user_id, amount, category, description):
     conn=connect_db()
     # create a controller to interact with database
     cursor=conn.cursor()
     date=datetime.now().strftime("%Y-%m-%d")
     #query to add expenses
     cursor.execute('''
-        INSERT INTO expenses(amount, category, description, date)
-        VALUES (?,?,?,?)
+        INSERT INTO expenses(user_id, amount, category, description, date)
+        VALUES (?,?,?,?,?)
     ''', (amount, category, description, date))
     conn.commit()
     conn.close()
     print("\n  ✅ Expenses added successfully!")
 
-def view_expenses():
+def view_expenses(user_id):
     conn=connect_db()
     cursor=conn.cursor()
-    cursor.execute('SELECT * FROM expenses ORDER BY date DESC')
+    cursor.execute('SELECT * FROM expenses WHERE user_id=? ORDER BY date DESC', conn,params=(user_id,))
     rows=cursor.fetchall()
     conn.close()
 
